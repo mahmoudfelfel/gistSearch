@@ -1,0 +1,48 @@
+<div class="card-wrapper row">
+    <form name="searchForm" ng-submit="searchGists();">
+        <div class="col-sm-12">
+            <input type="text" name="searchInput" class="search-input" placeholder="search by user name ... e.g. AddyOsmani" ng-model="$parent.searchKeyword" autofocus required>
+        </div>
+    </form>
+
+</div>
+
+<div class="gist-list" ng-hide="fullView">
+    <div class="loading-icon" ng-if="loading"><img src="images/puff.svg" width="50"  alt=""></div>
+
+    <ul>
+        <li class="gist-element card-wrapper" ng-repeat="gist in gistList">
+            <div>
+                <div class="pull-right">
+                    <span class="expand-icon glyphicon glyphicon-resize-full pull-right" ng-click="expandGist();" ui-sref="home.gist({id:gist.id})"></span>
+                </div>
+                <span class="gist-element-description">{{gist.description}}</span>
+                <div class="gist-element-data">
+                    <span><b>last update:</b> {{gist.updated_at | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                    <div><b>Files:</b>
+                        <a class="text-muted" target="_blank" ng-href="{{data.raw_url}}" ng-repeat="(file, data) in gist.files">{{file}} </a>
+                    </div>
+                    <span class="pull-right"><a href="">more details ...</a></span>
+                </div>
+                <div class="gist-element-footer row">
+                    <span class="gist-element-tag pull-right label label-default tag-{{data.language}}" ng-class="" ng-repeat="(file, data) in gist.files| unique: 'language' ">{{data.language}}</span>
+                    <div class="pull-left">
+                        <button class="btn btn-default" ng-click="getForks(gist.id);">Forks</button>
+                        <button class="btn btn-default">Comments</button>
+                    </div>
+                </div>
+            </div>
+            <div class="forks-panel" ng-if="forksList[gist.id]">
+                <div class="text-muted text-center" ng-if="forksList[gist.id].length === 0">There Is No Forks For this Gist !</div>
+                <a class="fork-element" target="_blank" ng-href="{{'https://gist.github.com/'+ fork.owner.login +'/'+ fork.id}}" ng-repeat="fork in forksList[gist.id] | limitTo: 3">
+                    <img ng-src="{{fork.owner.avatar_url}}">
+                    <span class="fork-data"> <b>by: </b>{{fork.owner.login}}, <b>last updated: </b>{{fork.updated_at | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                </a>
+                <a class="fork-element-footer" target="_blank" ng-href="{{'https://gist.github.com/'+gist.owner.login+'/'+gist.id+'/forks'}}" ng-if="forksList[gist.id].length > 3">This gist have <span class="badge"> {{forksList[gist.id].length - 3}}</span> more fork(s) !</a>
+            </div>
+
+        </li>
+    </ul>
+</div>
+<div class="gist-details  card-wrapper" ng-if="fullView" ui-view></div>
+<div class="overlay" ng-if="fullView"></div>

@@ -1,0 +1,34 @@
+<div class="loading-icon" ng-if="loading"><img src="images/puff.svg" width="100"  alt=""></div>
+<div ng-if="!loading">
+    <span class="collapse-icon glyphicon glyphicon-resize-small pull-right" ng-click="collapseGist();"></span>
+    <h1>{{gistData.description}}</h1>
+    <div>
+        <h3><b>last update:</b> {{gistData.updated_at | date:'yyyy-MM-dd HH:mm:ss'}}</h3>
+        <div>
+            <h3>Files:</h3>
+            <!-- <a class="text-muted" target="_blank" ng-href="{{data.raw_url}}" ng-repeat="(file, data) in gistData.files">{{file}} </a> -->
+            <div class="panel panel-default" ng-repeat="(file, data) in gistData.files">
+                <div class="panel-heading">
+                    <b>{{file}}</b>
+                    <span class="gist-element-tag pull-right label label-default tag-{{data.language}}">{{data.language}}</span>
+                </div>
+                <div class="panel-body markdown-panel" ng-if="data.language === 'Markdown'" ng-class="{'no-padding':data.language !== 'Markdown'}">
+                    <div btf-markdown="data.content">
+                    </div>
+
+                </div>
+
+                <div class="panel-body" ng-if="data.language !== 'Markdown'" ng-class="{'no-padding':data.language !== 'Markdown'}">
+                    <!-- <div ng-if="data.language === 'Markdown'" btf-markdown="data.content"> -->
+
+                    <div ui-codemirror="{
+				            lineNumbers: true,
+				            theme:'default',
+				            readOnly: 'nocursor',
+				            lineWrapping : true,
+				          }" ng-model="data.content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
