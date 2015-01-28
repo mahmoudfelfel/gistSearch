@@ -13,7 +13,7 @@ body {
 .no-padding {
     padding: 0 !important;
 }
-.expand-transition {    
+.expand-transition {
     position: relative;
     -webkit-transform: translateY(-100px);
     transform: translateY(-100px);
@@ -38,6 +38,9 @@ body {
 }
 /*search form*/
 
+.search-form {
+    display: flex;
+}
 .card-wrapper {
     width: 80%;
     margin: 0 auto;
@@ -45,13 +48,34 @@ body {
     box-shadow: 0px 2px 4px 0px #ddd;
     background-color: #fff;
 }
-.search-form-wrapper > form {} .search-input {
+.search-input {
     width: 100%;
     border: none;
     height: 50px;
     font-size: 20px;
     outline: none;
     color: #c2c2c2;
+}
+.autocomplete-list {
+    border-top: 1px solid #d3d3d3;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.autocomplete-element {
+    padding: 10px 10px 10px 20px;
+    cursor: pointer;
+}
+.autocomplete-element:hover {
+    background-color: #F4F4F4;
+}
+.autocomplete-element > img {
+    border-radius: 50%;
+    width: 50px;
+}
+.autocomplete-element > span {
+    font-size: 1.6em;
+    padding: 10px 50px;
 }
 /*search results*/
 
@@ -87,11 +111,11 @@ body {
 .expand-icon, .collapse-icon {
     cursor: pointer;
 }
-.collapse-icon{
-  font-size: 30px;
+.collapse-icon {
+    font-size: 30px;
 }
-.expand-icon{
-  font-size: 20px;
+.expand-icon {
+    font-size: 20px;
 }
 /*gist single view*/
 
@@ -106,7 +130,7 @@ body {
     left: 0;
     padding: 25px;
 }
-.markdown-panel img{
+.markdown-panel img {
     width: 100%;
     border: 1px solid #d3d3d3;
 }
@@ -205,15 +229,13 @@ body {
     
     transition-duration: 0s;
 }
-
 .gist-details.ng-enter {
     -webkit-animation: fadeInUp 0.1s;
     -ms-animation: fadeInUp 0.1s;
     animation: fadeInUp 0.1s;
 }
-
-.loading-icon{
-  text-align: center;
+.loading-icon {
+    text-align: center;
 }
 /* Make the masthead heading the same height as the navigation */
 
