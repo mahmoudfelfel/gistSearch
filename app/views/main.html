@@ -5,8 +5,11 @@
         </div>
     </form>
     <div class="autocomplete-list" ng-if="showSearchWrapper">
-        <div class="loading-icon" ng-if="loading"><img src="images/puff.svg" width="50" >
-        </div>
+<div class="loader" ng-if="loading">
+  <svg class="circular">
+    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+  </svg>
+</div>
         <div class="autocomplete-element" ng-click="searchGists(result.login);" ng-repeat="result in autocompleteList.items | limitTo: 10">
             <img ng-src="{{result.avatar_url}}">
             <span class="fork-data">{{result.login}}</span>
@@ -18,8 +21,12 @@
 </div>
 
 <div class="gist-list" ng-hide="fullView || showSearchWrapper">
-    <div class="loading-icon" ng-if="loading"><img src="images/puff.svg" width="50"></div>
-
+    <!-- <div class="loading-icon" ng-if="loading"><img src="images/puff.svg" width="50"></div> -->
+<div class="loader" ng-if="loading">
+  <svg class="circular">
+    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+  </svg>
+</div>
     <ul>
         <li class="gist-element card-wrapper" ng-repeat="gist in gistList">
             <div>

@@ -1,4 +1,8 @@
-<div class="loading-icon" ng-if="loading"><img src="images/puff.svg" width="100"  alt=""></div>
+<div class="loader" ng-if="loading">
+  <svg class="circular">
+    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+  </svg>
+</div>
 <div ng-if="!loading">
     <span class="collapse-icon glyphicon glyphicon-resize-small pull-right" ng-click="collapseGist();"></span>
     <h1>{{gistData.description}}</h1>
